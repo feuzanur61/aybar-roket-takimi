@@ -125,18 +125,20 @@ textarea{min-height:105px;resize:vertical}
 
   <label>Departman tercihin *</label>
   <div class="choices">
-    <div class="choice"><label><input type="checkbox" name="departman" value="Aerodinamik" onchange="update()"> Aerodinamik</label></div>
-    <div class="choice"><label><input type="checkbox" name="departman" value="Aerotermal" onchange="update()"> Aerotermal</label></div>
-        <div class="choice"><label><input type="checkbox" name="departman" value="Yapısal" onchange="update()"> Yapısal</label></div>
-    <div class="choice"><label><input type="checkbox" name="departman" value="Uçuş Simülasyonu" onchange="update()"> Uçuş Simülasyonu</label></div>
-    <div class="choice"><label><input type="checkbox" name="departman" value="Aviyonik" onchange="update()"> Aviyonik</label></div>
-    <div class="choice"><label><input type="checkbox" name="departman" value="Paraşüt Sistemi" onchange="update()"> Paraşüt Sistemi</label></div>
+    <div class="choice"><label><input type="checkbox" class="dept-check" data-dept="Aerodinamik" onchange="update()"> Aerodinamik</label></div>
+    <div class="choice"><label><input type="checkbox" class="dept-check" data-dept="Aerotermal" onchange="update()"> Aerotermal</label></div>
+        <div class="choice"><label><input type="checkbox" class="dept-check" data-dept="Yapısal" onchange="update()"> Yapısal</label></div>
+    <div class="choice"><label><input type="checkbox" class="dept-check" data-dept="Uçuş Simülasyonu" onchange="update()"> Uçuş Simülasyonu</label></div>
+    <div class="choice"><label><input type="checkbox" class="dept-check" data-dept="Aviyonik" onchange="update()"> Aviyonik</label></div>
+    <div class="choice"><label><input type="checkbox" class="dept-check" data-dept="Paraşüt Sistemi" onchange="update()"> Paraşüt Sistemi</label></div>
   </div>
+
+  <input type="hidden" name="departman" id="departmanHidden">
 
   <label>Birinci tercihin hangisi?</label>
   <select name="birinci_tercih" required>
     <option>Seçiniz</option><option>Aerodinamik</option><option>Aerotermal</option>
-    <option>Yapısal</option><option>Uçuş Simülasyonu</option><option>Aviyonik</option>
+    <option>Yapısal</option><option>Uçuş Simülasyonu</option><option>Aviyonik</option><option>Paraşüt Sistemi</option>
   </select>
 
   <div id="dynamic" class="dynamic">
@@ -145,52 +147,52 @@ textarea{min-height:105px;resize:vertical}
     <div id="aero" class="dq" style="display:none">
       <label>Aerodinamikte hangi alanlarla ilgileniyorsun?</label>
       <div class="choices">
-        <div class="choice"><label><input type="checkbox"> Aerodinamik Tasarım</label></div>
-        <div class="choice"><label><input type="checkbox"> CFD Analizi</label></div>
+        <div class="choice"><label><input type="checkbox" name="aero_ilgi" value="Aerodinamik Tasarım"> Aerodinamik Tasarım</label></div>
+        <div class="choice"><label><input type="checkbox" name="thermal_ilgi" value="CFD Analizi"> CFD Analizi</label></div>
       </div>
-      <label>Varsa kullandığın analiz / tasarım araçları</label><input placeholder="ANSYS, Fluent, vb.">
+      <label>Varsa kullandığın analiz / tasarım araçları</label><input name="aero_araclar" placeholder="ANSYS, Fluent, vb.">
 
     </div>
 
     <div id="thermal" class="dq" style="display:none">
       <label>Aerotermalde hangi alanlarla ilgileniyorsun?</label>
       <div class="choices">
-        <div class="choice"><label><input type="checkbox"> Isı Transferi</label></div>
-        <div class="choice"><label><input type="checkbox"> Termal Analiz</label></div>
-        <div class="choice"><label><input type="checkbox"> CFD Analizi</label></div>
+        <div class="choice"><label><input type="checkbox" name="thermal_ilgi" value="Isı Transferi"> Isı Transferi</label></div>
+        <div class="choice"><label><input type="checkbox" name="thermal_ilgi" value="Termal Analiz"> Termal Analiz</label></div>
+        <div class="choice"><label><input type="checkbox" name="thermal_ilgi" value="CFD Analizi"> CFD Analizi</label></div>
       </div>
     </div>
 
     <div id="struct" class="dq" style="display:none">
       <label>Yapısal tarafta hangileriyle ilgileniyorsun?</label>
       <div class="choices">
-        <div class="choice"><label><input type="checkbox"> CAD Tasarımı</label></div>
-        <div class="choice"><label><input type="checkbox"> FEA Analizi</label></div>
-        <div class="choice"><label><input type="checkbox"> Kompozit</label></div>
+        <div class="choice"><label><input type="checkbox" name="struct_ilgi" value="CAD Tasarımı"> CAD Tasarımı</label></div>
+        <div class="choice"><label><input type="checkbox" name="struct_ilgi" value="FEA Analizi"> FEA Analizi</label></div>
+        <div class="choice"><label><input type="checkbox" name="struct_ilgi" value="Kompozit"> Kompozit</label></div>
       </div>
-      <label>Hangi yazılımları kullandın?</label><input placeholder="SolidWorks, CATIA, NX, ANSYS vb.">
-      <label>Yaptığın bir analiz / tasarım çalışmasını kısaca anlat.</label><textarea></textarea>
+      <label>Hangi yazılımları kullandın?</label><input name="struct_araclar" placeholder="SolidWorks, CATIA, NX, ANSYS vb.">
+      <label>Yaptığın bir analiz / tasarım çalışmasını kısaca anlat.</label><textarea name="struct_calismasi"></textarea>
     </div>
 
     <div id="sim" class="dq" style="display:none">
       <label>Uçuş simülasyonunda hangilerini biliyorsun?</label>
       <div class="choices">
-        <div class="choice"><label><input type="checkbox"> OpenRocket</label></div>
-        <div class="choice"><label><input type="checkbox"> MATLAB / Simulink</label></div>
+        <div class="choice"><label><input type="checkbox" name="sim_bilgi" value="OpenRocket"> OpenRocket</label></div>
+        <div class="choice"><label><input type="checkbox" name="sim_bilgi" value="MATLAB / Simulink"> MATLAB / Simulink</label></div>
       </div>
     </div>
 
 
     <div id="parachute" class="dq" style="display:none">
       <label>Paraşüt Sistemi ile ilgili deneyimin veya ilgin var mı?</label>
-      <textarea placeholder="Varsa deneyimini, projen veya ilgilendiğin alanları kısaca anlat."></textarea>
+      <textarea name="parachute_deneyim" placeholder="Varsa deneyimini, projen veya ilgilendiğin alanları kısaca anlat."></textarea>
     </div>
 
     <div id="av" class="dq" style="display:none">
       <label>Aviyonik tarafında hangileriyle ilgileniyorsun?</label>
       <div class="choices">
-        <div class="choice"><label><input type="checkbox"> Sensörler</label></div><div class="choice"><label><input type="checkbox"> Mikrodenetleyici</label></div>
-        <div class="choice"><label><input type="checkbox"> Telemetri</label></div><div class="choice"><label><input type="checkbox"> Veri Toplama</label></div>
+        <div class="choice"><label><input type="checkbox" name="av_ilgi" value="Sensörler"> Sensörler</label></div><div class="choice"><label><input type="checkbox" name="av_ilgi" value="Mikrodenetleyici"> Mikrodenetleyici</label></div>
+        <div class="choice"><label><input type="checkbox" name="av_ilgi" value="Telemetri"> Telemetri</label></div><div class="choice"><label><input type="checkbox" name="av_ilgi" value="Veri Toplama"> Veri Toplama</label></div>
       </div>
     </div>
   </div>
@@ -203,7 +205,7 @@ textarea{min-height:105px;resize:vertical}
   <textarea name="motivasyon" maxlength="700" required placeholder="Motivasyonunu kısaca anlat."></textarea>
   <label>Haftada ayırabileceğin zaman</label>
   <select name="haftalik_zaman"><option>2–5 saat</option><option>5–10 saat</option><option>10–15 saat</option><option>15+ saat</option></select>
-  <label>CV / Portfolyo PDF yükle *</label><input type="file" name="cv_portfolyo_pdf" accept=".pdf,application/pdf" required><p class="notice">Yalnızca PDF kabul edilir. CV ve varsa portfolyonu tek PDF dosyası olarak yükleyebilirsin. Form sistemi toplam dosya boyutunu 10 MB ile sınırlar.</p>
+  <label>CV / Portfolyo PDF yükle *</label><input type="file" name="cv_portfolyo_pdf" accept=".pdf,application/pdf" required>
   <br><br>
   <button class="btn" type="submit">BAŞVURUYU GÖNDER 🚀</button>
   
@@ -216,13 +218,41 @@ textarea{min-height:105px;resize:vertical}
 
 <script>
 function update(){
- const selected=[...document.querySelectorAll('input[type=checkbox][value]')].filter(x=>x.checked).map(x=>x.value);
- document.getElementById('dynamic').style.display=selected.length?'block':'none';
- const map={'Aerodinamik':'aero','Aerotermal':'thermal','Yapısal':'struct','Uçuş Simülasyonu':'sim','Aviyonik':'av','Paraşüt Sistemi':'parachute'};
- Object.values(map).forEach(id=>document.getElementById(id).style.display='none');
- selected.forEach(name=>document.getElementById(map[name]).style.display='block');
+  const deptChecks=[...document.querySelectorAll('.dept-check')];
+  const selected=deptChecks.filter(x=>x.checked).map(x=>x.dataset.dept);
+
+  // FormSubmit table sometimes displays repeated checkbox fields incompletely.
+  // Send all selected departments as ONE field instead.
+  document.getElementById('departmanHidden').value=selected.join(', ');
+
+  document.getElementById('dynamic').style.display=selected.length?'block':'none';
+  const map={'Aerodinamik':'aero','Aerotermal':'thermal','Yapısal':'struct','Uçuş Simülasyonu':'sim','Aviyonik':'av','Paraşüt Sistemi':'parachute'};
+  Object.values(map).forEach(id=>document.getElementById(id).style.display='none');
+  selected.forEach(name=>{
+    const target=map[name];
+    if(target) document.getElementById(target).style.display='block';
+  });
 }
 
+// Before submission, combine every checked department-specific multi-select
+// into a single readable value so the email contains all selected items.
+document.getElementById('applicationForm').addEventListener('submit', function(){
+  update();
+  const groups=[
+    ['aero_ilgi','aero_ilgi_all'],
+    ['thermal_ilgi','thermal_ilgi_all'],
+    ['struct_ilgi','struct_ilgi_all'],
+    ['sim_bilgi','sim_bilgi_all'],
+    ['av_ilgi','av_ilgi_all']
+  ];
+  groups.forEach(([name, hiddenName])=>{
+    let hidden=this.querySelector('input[name="'+hiddenName+'"]');
+    if(!hidden){
+      hidden=document.createElement('input'); hidden.type='hidden'; hidden.name=hiddenName; this.appendChild(hidden);
+    }
+    hidden.value=[...this.querySelectorAll('input[name="'+name+'"]:checked')].map(x=>x.value).join(', ');
+  });
+});
 </script>
 </body>
 </html>
